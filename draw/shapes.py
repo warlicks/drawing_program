@@ -5,12 +5,12 @@ from math import pi
 class Shape(abc.ABC):
     """Abstract Base Class For Shapes
 
-    The abstract bases class defines the interface that other classes need to
+    The abstract bases class defines the interface that shapes need to
     follow. Classes that inherit from Shape must implement an area and perimeter
     method. They must also implement a shape_name property.
 
     The draw method is not defined as an abstract method. An can be used by all
-    children to print the shape name, it's area and perimeter
+    children to print the shape name, the shape area and the shape perimeter.
     """
 
     @property
@@ -38,7 +38,12 @@ class Shape(abc.ABC):
         """
         return self.__str__()
 
-    def __str__(self):
+    def __str__(self) -> str:
+        """Internal Method for string representation of the shape instance
+
+        Returns:
+            str: String with the format <Shape Name>, area: <shape area>, perimeter: <perimeter>.
+        """
         return f"{self.shape_name}, area: {self.area():.2f}, perimeter: {self.perimeter():.2f}"
 
 
@@ -113,7 +118,6 @@ class Square(Shape):
     def area(self) -> int | float:
         """Computes the Area of the Square
 
-
         Returns:
             int | float: The area of the square.
         """
@@ -132,9 +136,9 @@ class Rectangle(Square):
     def __init__(self, length: int | float, width: int | float) -> None:
         """Creates an instance of the Rectangle Class
 
-        Since a square is just a special case of a rectangle rectangle class
+        Since a square is just a special case of a rectangle, rectangle class
         inherits from the square class. The only significant change is that you
-        must specify the length and the width of the rectangle when creating an
+        must specify the length and width of the rectangle when creating an
         instance.
 
         Args:
@@ -153,3 +157,51 @@ class Rectangle(Square):
             str: Square
         """
         return self._shape_name
+
+
+class Triangle(Shape):
+    def __init__(
+        self,
+        side1: int | float,
+        side2: int | float,
+        base: int | float,
+        height: int | float,
+    ) -> None:
+        """Creates an instance of the triangle class
+
+        Args:
+            side1 (int | float): The length of a side of the triangle
+            side2 (int | float): The length of a side of the triangle
+            base (int | float): The length of the base of the triangle
+            height (int | float): The height of the triangle.
+        """
+        self._shape_name = "Triangle"
+        self.side1 = side1
+        self.side2 = side2
+        self.base = base
+        self.height = height
+
+    @property
+    def shape_name(self):
+        """Returns the shape name for the instances
+
+        Returns:
+            str: Triangle
+        """
+        return self._shape_name
+
+    def area(self):
+        """Computes the Area of the Triangle
+
+        Returns:
+            int | float: The area of the triangle.
+        """
+        return 0.5 * self.base * self.height
+
+    def perimeter(self):
+        """Computes the Area of the Triangle
+
+        Returns:
+            int | float: The area of the triangle.
+        """
+        return self.side1 + self.side2 + self.base
