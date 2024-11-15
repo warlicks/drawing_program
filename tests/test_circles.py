@@ -18,7 +18,7 @@ def test_subclass(circle):
 
 def test_circle_property(circle):
     """Test that shape_name proprty returns the correct name"""
-    assert circle.shape_name() == "Circle"
+    assert circle.shape_name == "Circle"
 
 
 def test_draw_circle(circle):
