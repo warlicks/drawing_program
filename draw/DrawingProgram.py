@@ -1,9 +1,14 @@
 # Your team will create a program that has a class that holds a list/collection of shapes. This class will
 # be named DrawingProgram. Here are the attributes (data) and behaviors (methods) of this class:
-from shapes import Circle, Square, Rectangle, Triangle
+from shape_factory import ShapeFactory
 
 
-class DrawingProgram(Circle, Square, Rectangle, Triangle):
+class DrawingProgram(ShapeFactory):
+    # For the intents and purposes of this assignment, all shapes should be created via ShapeFactory.
+    #     Thus any adding of shapes to your DrawingProgram class object must be done through ShapeFactory.
+    #     This may seem cumbersome, but the point is to leave object creation to a single class.
+    #         It encapsulates how to create the objects you need.
+    #  ^^^ I think this means we pass in ShapeFactory into DrawingProgram instead of the shapes themselves?
 
     def __init__(self, Shapes = None):
         if Shapes is None or isinstance(Shapes, list):
@@ -53,4 +58,10 @@ class DrawingProgramIterator:
     # See notes/slides on Iterator and
     # book chapter "The Iterator Pattern" and the section "The Iterator Protocol"
     # Sean's question: (why not build it into the class?)
+
+
+class DrawingProgramMain(DrawingProgram):
+    #     Create a class called DrawingProgramMain that creates a DrawingProgram,
+    #     adds shapes to it. Sorts the shapes, adds some more shapes, replaces some shapes,
+    #     sorts again. With each thing done be sure and include print statements to show what was done.
 

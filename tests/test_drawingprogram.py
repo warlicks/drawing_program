@@ -1,9 +1,14 @@
-from DrawingProgram import DrawingProgramIterator
+from DrawingProgram import DrawingProgram, DrawingProgramIterator
 
 # from assignment directions:
 # assuming drawing_program = DrawingProgram(), the following code should work
 # for shape in drawing_program:
 # print(shape)
+
+# from assignment directions:
+# DrawingProgram class functionality
+#     make sure you demonstrate all required methods behave properly
+#     make sure you show edge cases for those methods as necessary (e.g. sort operates on empty list of shapes, 1 shape, multiple shapes ascending order, multiple shapes descending order, multiple shapes random order)
 
 
 # TO TEST for DrawingProgram:
@@ -26,5 +31,7 @@ from DrawingProgram import DrawingProgramIterator
 # get_shape(self, index): returns the shape at the specified index
 
 # set_shape(self, index, Shape): replaces the shape at the specified index
+
+# dont need a test for DrawingProgramMain? weird...
 
 
