@@ -175,6 +175,10 @@ class Triangle(Shape):
             base (int | float): The length of the base of the triangle
             height (int | float): The height of the triangle.
         """
+        # might be complicated but can we give an option for people to
+        # enter a few of these and then the others will be assigned?
+        # (i.e. some of this info would be redundant)
+        # we can also just write the tests in such a way that leaving it as is works for this program
         self._shape_name = "Triangle"
         self.side1 = side1
         self.side2 = side2

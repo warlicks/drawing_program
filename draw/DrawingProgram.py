@@ -10,28 +10,38 @@ class DrawingProgram(ShapeFactory):
     #         It encapsulates how to create the objects you need.
     #  ^^^ I think this means we pass in ShapeFactory into DrawingProgram instead of the shapes themselves?
 
-    def __init__(self, Shapes = None):
-        if Shapes is None or isinstance(Shapes, list):
-            self.Shapes = Shapes
+    def __init__(self, shapes = None):
+        if shapes is None or isinstance(shapes, list):
+            self.shapes = shapes
         else:
-            Exception(f"Shapes: {Shapes} is not None or a list.")
+            Exception(f"Shapes: {shapes} is not None or a list.")
 
-    def add_shape(self, Shape):
-        self.Shapes.append(Shape)
+    def add_shape(self, shape):
+        self.shapes.append(shape)
 
-    def remove_shape(self, Shape):
+    def remove_shape(self, shape):
         """remove shape that exists in the DrawingProgram.Shapes list, else throw an exception"""
-        shape_rm_count = self.Shapes.count(Shape)
-        if Shape in self.Shapes:
-            self.Shapes.remove(Shape)
+        shape_rm_count = self.shapes.count(shape)
+        if shape in self.shapes:
+            self.Shapes.remove(shape)
         else:
-            raise Exception(f'{Shape} not in {self.Shapes}')
+            raise Exception(f'{shape} not in {self.shapes}')
 
         print(f"{shape_rm_count} number of occurrences removed from shape list.")
         return shape_rm_count
 
-    def print_shapes(self, Shape):
-        """prints all shapes that match the type of the shape passed in"""
+    def print_shapes(self, shape):
+        """prints all shapes that match the type of the shape passed in.
+        throw exception if shape is not in ShapeFactory shapes."""
+        if shape not in ShapeFactory.shape_dict():
+            Exception(f'{shape} is not a shape in ShapeFactory.')
+
+        matched_shapes = []
+        for each_shape in self.shapes:
+            if isinstance(shape, each_shape):
+                matched_shapes.append(each_shape)
+
+        return matched_shapes
 
     def sort_shapes(self):
         """sorts the list/collection of shapes -- you must use a sort
@@ -47,7 +57,7 @@ class DrawingProgram(ShapeFactory):
     def get_shape(self, index):
         """returns the shape at the specified index"""
 
-    def set_shape(self, index, Shape):
+    def set_shape(self, index, shape):
         """replaces the shape at the specified index any other
         behaviors you feel are necessary for the class"""
 
