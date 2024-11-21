@@ -1,18 +1,41 @@
 from .shapes import Circle, Square, Rectangle, Triangle
 
-# create_shape(shape name, shape data): creates a shape of the specified type using the necessary data for building that shape and returns that shape
-# e.g.: my_shape = ShapeFactory.create_shape("Circle", 2.0), where 2.0 is the radius of the circle
-# e.g.: my_shape = ShapeFactory.create_shape("Rectangle", 2.0, 4.0), where 2.0 is length and 4.0 is width
-# place the @staticmethod decorator/annotation on top of your create_shape definition to allow you to call it as shown in above examples
-# NOTE: If you would like, you can instead have individual create methods for circle, square, triangle, and rectangle.
-# This will get rid of the need for a big nested if else inside create_shape. Thus you could have create_circle, create_square, etc.
-#
-
 
 class ShapeFactory:
+    """A "factory class" for creating members of the shape class.
+
+    There is only one method for the class create_shape. This method simply wraps the
+    creation of a Shape subclass based on the shape name provided. This approach makes
+    it easy to add addtional shapes to the factory when a new Shape subclass is created.
+
+    Raises:
+        AssertionError: Assertion error is raised if an invalid shape name is provied.
+
+    Returns:
+        Shape: A Shape subclass instance appropraite to the shape name provided.
+    """
 
     @staticmethod
-    def create_shape(shape_name: str, **kwargs):
+    def create_shape(shape_name: str, **kwargs) -> "Shape":
+        """Creates the desired shape
+
+        Arguments for desired shape should be passed as **kwargs. See the desired shape
+        for details.
+
+        Args:
+            shape_name (str): Indicates the shape that should be created by the factory.
+              The name of the shape should be provided in lower case characters. Valid
+              shape names include 'circle', 'square', 'rectangle' and 'triangel'.
+
+
+
+        Raises:
+            AssertionError: Assertion error is raised if an invalid shape name is provied.
+
+        Returns:
+            Shape: A Shape subclass instance appropraite to the shape name provided.
+
+        """
         if shape_name.lower() == "circle":
             return Circle(**kwargs)
         elif shape_name.lower() == "square":
