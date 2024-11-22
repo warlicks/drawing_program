@@ -1,5 +1,4 @@
 import pytest
-from draw import shape_factory
 from draw.shape_factory import ShapeFactory
 from draw.shapes import Circle, Rectangle, Square, Triangle
 
