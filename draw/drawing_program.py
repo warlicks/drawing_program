@@ -64,6 +64,47 @@ class DrawingProgram:
         """replaces the shape at the specified index any other
         behaviors you feel are necessary for the class"""
 
+    def _merge_sort(self, data: list):
+
+        # Define the base case:
+        if len(data) <= 1:
+            return data
+
+        # Recursively split the list
+        middle = len(data) // 2
+        left = data[:middle]
+        right = data[middle:]
+
+        s_left = self._merge_sort(left)
+        s_right = self._merge_sort(right)
+
+        return self._merge(s_left, s_right)
+
+    def _merge(self, left, right):
+        result_storage = []
+        # Check for shape name differences and sort by name
+        if left[0].shape_name < right[0].shape_name:
+            result_storage.append(left[0])
+            left.pop(0)
+        elif left[0].shape_name > right[0].shape_name:
+            result_storage.append(right[0])
+            right.pop(0)
+        # If the names are the same we make comparison to the shape area.
+        else:
+            if left[0].area() < right[0].area():
+                result_storage.append(left[0])
+                left.pop(0)
+            else:
+                result_storage.append(right[0])
+                right.pop(0)
+
+        if left:
+            result_storage += left
+        if right:
+            result_storage += right
+
+        return result_storage
+
 
 class DrawingProgramIterator:
     """Provides the ability to iterate across the collection of shapes in DrawingProgram
