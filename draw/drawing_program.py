@@ -43,8 +43,7 @@ class DrawingProgram:
         """sorts the list/collection of shapes -- you must use a sort
         that runs in O(nlogn) for its worst case. shapes will be sorted
         first by name, then by area if names are same"""
-        # Sean's question: can we use preprogrammed sort_shapes(): "sorts the list/collection of shapes --
-        #  ^^ concat name and area and put together to do it
+        self.shapes = self._merge_sort(self.shapes)
 
     def __iter__(self):
         """Internal method enabling the iteration through the collection of shapes"""
@@ -83,20 +82,21 @@ class DrawingProgram:
     def _merge(self, left, right):
         result_storage = []
         # Check for shape name differences and sort by name
-        if left[0].shape_name < right[0].shape_name:
-            result_storage.append(left[0])
-            left.pop(0)
-        elif left[0].shape_name > right[0].shape_name:
-            result_storage.append(right[0])
-            right.pop(0)
-        # If the names are the same we make comparison to the shape area.
-        else:
-            if left[0].area() < right[0].area():
+        while left and right:
+            if left[0].shape_name < right[0].shape_name:
                 result_storage.append(left[0])
                 left.pop(0)
-            else:
+            elif left[0].shape_name > right[0].shape_name:
                 result_storage.append(right[0])
                 right.pop(0)
+            # If the names are the same we make comparison to the shape area.
+            else:
+                if left[0].area() < right[0].area():
+                    result_storage.append(left[0])
+                    left.pop(0)
+                else:
+                    result_storage.append(right[0])
+                    right.pop(0)
 
         if left:
             result_storage += left
