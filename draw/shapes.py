@@ -132,7 +132,7 @@ class Square(Shape):
         return self.length * 2 + self.width * 2
 
 
-class Rectangle(Square):
+class Rectangle(Shape):
     def __init__(self, length: int | float, width: int | float) -> None:
         """Creates an instance of the Rectangle Class
 
@@ -157,6 +157,22 @@ class Rectangle(Square):
             str: Square
         """
         return self._shape_name
+
+    def area(self) -> int | float:
+        """Computes the Area of the Rectangle
+
+        Returns:
+            int | float: The area of the Rectangle.
+        """
+        return self.length * self.width
+
+    def perimeter(self):
+        """Computes the perimeter  of the Rectangle
+
+        Returns:
+            int | float: : The square's Rectangle
+        """
+        return self.length * 2 + self.width * 2
 
 
 class Triangle(Shape):
