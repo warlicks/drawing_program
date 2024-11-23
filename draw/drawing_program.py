@@ -2,6 +2,12 @@
 # be named DrawingProgram. Here are the attributes (data) and behaviors (methods) of this class:
 
 
+import enum
+from tracemalloc import start
+
+from draw.shapes import Shape
+
+
 class DrawingProgram:
     # For the intents and purposes of this assignment, all shapes should be created via ShapeFactory.
     #     Thus any adding of shapes to your DrawingProgram class object must be done through ShapeFactory.
@@ -15,15 +21,17 @@ class DrawingProgram:
     def add_shape(self, shape):
         self.shapes.append(shape)
 
-    def remove_shape(self, shape):
+    def remove_shape(self, shape: Shape):
         """remove shape that exists in the DrawingProgram.Shapes list, else throw an exception"""
-        shape_rm_count = self.shapes.count(shape)
-        if shape in self.shapes:
-            self.Shapes.remove(shape)
-        else:
-            raise Exception(f"{shape} not in {self.shapes}")
+        start_length = len(self.shapes)
+        self.shapes = [x for x in self.shapes if not isinstance(x, shape)]
+        end_length = len(self.shapes)
+        shape_rm_count = start_length - end_length
 
-        print(f"{shape_rm_count} number of occurrences removed from shape list.")
+        if shape_rm_count == 0:
+            raise Exception(f"{shape} not present")
+
+        print(f"{shape_rm_count} number of {shape} removed from shape list.")
         return shape_rm_count
 
     def print_shapes(self, shape):
