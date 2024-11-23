@@ -1,10 +1,5 @@
 # Your team will create a program that has a class that holds a list/collection of shapes. This class will
 # be named DrawingProgram. Here are the attributes (data) and behaviors (methods) of this class:
-
-
-import enum
-from tracemalloc import start
-
 from draw.shapes import Shape
 
 
@@ -16,13 +11,37 @@ class DrawingProgram:
     #  ^^^ I think this means we pass in ShapeFactory into DrawingProgram instead of the shapes themselves?
 
     def __init__(self, shapes: list = []):
+        """Creates a DrawingProgram Instance
+
+        Args:
+            shapes (list, optional): A collection of Shapes in a list.
+              Defaults to an empty list.
+        """
         self.shapes = shapes
 
-    def add_shape(self, shape):
+    def add_shape(self, shape: Shape):
+        """Add a shape to the collection of shapes
+
+        Args:
+            shape (Shape): The shape to add to the collection.
+        """
+
         self.shapes.append(shape)
 
-    def remove_shape(self, shape: Shape):
-        """remove shape that exists in the DrawingProgram.Shapes list, else throw an exception"""
+    def remove_shape(self, shape: Shape) -> int:
+        """Removes all instances of a shape from the collection of shapes
+
+
+        Args:
+            shape (Shape): The shape you want to remove from the collection of shapes.
+
+        Raises:
+            Exception: Indicates that there were no itmes of the given shape in the
+              collection of shapes
+
+        Returns:
+            int: The number of items removed from the collection of shapes.
+        """
         start_length = len(self.shapes)
         self.shapes = [x for x in self.shapes if not isinstance(x, shape)]
         end_length = len(self.shapes)
@@ -34,23 +53,37 @@ class DrawingProgram:
         print(f"{shape_rm_count} number of {shape} removed from shape list.")
         return shape_rm_count
 
-    def print_shapes(self, shape):
-        """prints all shapes that match the type of the shape passed in.
-        throw exception if shape is not in ShapeFactory shapes."""
-        if shape not in ShapeFactory.shape_dict():
-            Exception(f"{shape} is not a shape in ShapeFactory.")
+    def print_shapes(self, shape: Shape):
+        """Prints all shapes that match the type of the shape
+
+        Args:
+            shape (Shape): The type of shape to print information about.
+
+        Raises:
+            ValueError: If there are no intances of the given shape in the collection
+              of shapes.
+
+        Returns:
+            Prints shape information
+        """
 
         matched_shapes = []
         for each_shape in self.shapes:
-            if isinstance(shape, each_shape):
+            if isinstance(each_shape, shape):
                 matched_shapes.append(each_shape)
+        if len(matched_shapes) == 0:
+            raise ValueError(f"There is no {shape} in the shape collection")
+        else:
+            for x in matched_shapes:
+                print(x)
 
-        return matched_shapes
+    def sort_shapes(self) -> None:
+        """Sorts the list/collection of shapes
 
-    def sort_shapes(self):
-        """sorts the list/collection of shapes -- you must use a sort
-        that runs in O(nlogn) for its worst case. shapes will be sorted
-        first by name, then by area if names are same"""
+        You must use a sort that runs in O(nlogn) for its worst case. Shapes will be sorted
+        first by name, then by area if names are same. The sort happens in place.
+
+        """
         self.shapes = self._merge_sort(self.shapes)
 
     def __iter__(self):
@@ -72,7 +105,7 @@ class DrawingProgram:
         behaviors you feel are necessary for the class"""
 
     def _merge_sort(self, data: list):
-
+        """Internal Method for sorting shapes."""
         # Define the base case:
         if len(data) <= 1:
             return data
@@ -88,6 +121,9 @@ class DrawingProgram:
         return self._merge(s_left, s_right)
 
     def _merge(self, left, right):
+        """Internal method that handles the merge portion of merge sort for sorting
+        shapes.
+        """
         result_storage = []
         # Check for shape name differences and sort by name
         while left and right:
