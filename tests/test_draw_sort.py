@@ -2,7 +2,8 @@ from draw.drawing_program import DrawingProgram
 from draw import ShapeFactory
 
 
-def test_empyt_shapes():
+def test_empty_shapes():
+    """Test behavior for DrawingProgram with an empty shapes list"""
     d = DrawingProgram()
 
     d.sort_shapes()
@@ -11,6 +12,7 @@ def test_empyt_shapes():
 
 
 def test_sort_same_shapes():
+    """Test DrawingProgram() sort_shapes works for same shape but different dimensions"""
     input = [
         ShapeFactory.create_shape("square", length=10),
         ShapeFactory.create_shape("square", length=1),
@@ -34,6 +36,7 @@ def test_sort_same_shapes():
 
 
 def test_sort_all_different_shapes():
+    """Test DrawingProgram() sort_shapes works for different shapes"""
     input = [
         ShapeFactory.create_shape("Triangle", side1=10, side2=10, base=12, height=6),
         ShapeFactory.create_shape("circle", radius=10),
@@ -51,6 +54,7 @@ def test_sort_all_different_shapes():
 
 
 def test_multiple_combos():
+    """Test DrawingProgram() sort_shapes works for same shape but different dimensions and different shapes"""
     input = [
         ShapeFactory.create_shape("Triangle", side1=10, side2=10, base=12, height=6),
         ShapeFactory.create_shape("circle", radius=10),
@@ -74,6 +78,7 @@ def test_multiple_combos():
 
 
 def test_single_shape_sort():
+    """Test sort_shapes method in DrawingProgram()"""
     d = DrawingProgram()
     d.add_shape(ShapeFactory.create_shape("circle", radius=10))
     pre_sort = d.shapes
@@ -84,6 +89,7 @@ def test_single_shape_sort():
 
 
 def test_equal_shapes():
+    """Test sort_shapes when two shapes are the same shape and dimension"""
     d = DrawingProgram(
         [
             ShapeFactory.create_shape("square", length=5),
