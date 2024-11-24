@@ -22,6 +22,7 @@ def test_square_create():
 
 
 def test_triangle_create():
+    """Test that the factory creates a working triangle instance."""
     t = ShapeFactory.create_shape("Triangle", side1=10, side2=10, base=12, height=6)
     assert isinstance(t, Triangle)
     assert t.shape_name == "Triangle"
@@ -37,5 +38,6 @@ def test_rectangle_class():
 
 
 def test_error_for_unknown_shape():
+    """Test that the factory throws an error when passing an unpexpected input."""
     with pytest.raises(AssertionError):
         ShapeFactory.create_shape("Polygon")
