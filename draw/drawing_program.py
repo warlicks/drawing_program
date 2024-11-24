@@ -106,6 +106,7 @@ class DrawingProgram:
 
     def get_shape(self, index):
         """returns the shape at the specified index"""
+        return self.shapes[index].__str__().split()[0][:-1]
 
     def set_shape(self, index, shape):
         """replaces the shape at the specified index any other
