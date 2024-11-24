@@ -148,6 +148,23 @@ def test_get_shape():
     assert index_shape == "Square"
 
 
+def test_set_shape():
+    """Test sort_shapes sorts the shapes in DrawingProgram()"""
+    shape_list = [
+        ShapeFactory.create_shape("circle", radius=10),
+        ShapeFactory.create_shape("square", length=10),
+        ShapeFactory.create_shape("rectangle", length=10, width=20.5),
+        ShapeFactory.create_shape("triangle", side1=10, side2=10, base=12, height=6),
+        ShapeFactory.create_shape("Circle", radius=1),
+    ]
+
+    d = DrawingProgram(shape_list)
+    d.set_shape(index=1, shape=ShapeFactory.create_shape("Circle", radius=1))
+
+    assert print(d) == "Circle, area: 314.16, perimeter: 62.83\nCircle, area: 3.14, perimeter: 6.28\nRectangle, area: 205.00, perimeter: 61.00\nTriangle, area: 36.00, perimeter: 32.00\nCircle, area: 3.14, perimeter: 6.28"
+
+
+
 def test_empty_print():
     d2 = DrawingProgram()
 

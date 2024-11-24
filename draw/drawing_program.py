@@ -108,9 +108,10 @@ class DrawingProgram:
         """returns the shape at the specified index"""
         return self.shapes[index].__str__().split()[0][:-1]
 
-    def set_shape(self, index, shape):
+    def set_shape(self, index, shape: Shape):
         """replaces the shape at the specified index any other
         behaviors you feel are necessary for the class"""
+        self.shapes[index] = shape
 
     def _merge_sort(self, data: list):
         """Internal Method for sorting shapes."""
