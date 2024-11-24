@@ -1,5 +1,6 @@
 import abc
 from math import pi
+from typing import Union
 
 
 class Shape(abc.ABC):
@@ -45,10 +46,11 @@ class Shape(abc.ABC):
             str: String with the format <Shape Name>, area: <shape area>, perimeter: <perimeter>.
         """
         return f"{self.shape_name}, area: {self.area():.2f}, perimeter: {self.perimeter():.2f}"
+        # return f"{self.shape_name}, area: {self.area()}, perimeter: {self.perimeter()}"
 
 
 class Circle(Shape):
-    def __init__(self, radius: int | float) -> None:
+    def __init__(self, radius: Union[int, float]) -> None:
         """Creates an instance of a Circle shape.
 
         Args:
@@ -66,7 +68,7 @@ class Circle(Shape):
         """
         return self._shape_name
 
-    def area(self) -> int | float:
+    def area(self) -> Union[int, float]:
         """Computes the Area of the Circle
 
 
@@ -75,7 +77,7 @@ class Circle(Shape):
         """
         return pi * self.radius**2
 
-    def circumference(self) -> int | float:
+    def circumference(self) -> Union[int, float]:
         """Computes the (circumference) of the circle
 
         Returns:
@@ -93,7 +95,7 @@ class Circle(Shape):
 
 
 class Square(Shape):
-    def __init__(self, length: int | float) -> None:
+    def __init__(self, length: Union[int, float]) -> None:
         """Creates an instance of a Square shape.
 
         Since all four sides of a square are equal length you only need to specify
@@ -115,7 +117,7 @@ class Square(Shape):
         """
         return self._shape_name
 
-    def area(self) -> int | float:
+    def area(self) -> Union[int, float]:
         """Computes the Area of the Square
 
         Returns:
@@ -133,7 +135,7 @@ class Square(Shape):
 
 
 class Rectangle(Shape):
-    def __init__(self, length: int | float, width: int | float) -> None:
+    def __init__(self, length: Union[int, float], width: Union[int, float]) -> None:
         """Creates an instance of the Rectangle Class
 
         Since a square is just a special case of a rectangle, rectangle class
@@ -158,7 +160,7 @@ class Rectangle(Shape):
         """
         return self._shape_name
 
-    def area(self) -> int | float:
+    def area(self) -> Union[int, float]:
         """Computes the Area of the Rectangle
 
         Returns:
@@ -178,10 +180,10 @@ class Rectangle(Shape):
 class Triangle(Shape):
     def __init__(
         self,
-        side1: int | float,
-        side2: int | float,
-        base: int | float,
-        height: int | float,
+        side1: Union[int, float],
+        side2: Union[int, float],
+        base: Union[int, float],
+        height: Union[int, float],
     ) -> None:
         """Creates an instance of the triangle class
 
