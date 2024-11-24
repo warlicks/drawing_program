@@ -22,20 +22,20 @@ def test_square_property(square):
 
 
 def test_draw_square(square):
+    """Test that .draw method outputs as expected"""
     assert square.draw() == "Square, area: 100.00, perimeter: 40.00"
 
 
 def test_print_square(square):
     """Test that we have correctly implemented string representation."""
-
     assert str(square) == "Square, area: 100.00, perimeter: 40.00"
 
 
 def test_square_area(square):
     """Test that we get the correct area calculation"""
-
     assert square.area() == 100
 
 
-def test_square_perimiter(square):
+def test_square_perimeter(square):
+    """Test that we get correct perimeter calculation"""
     assert square.perimeter() == 40
