@@ -1,6 +1,6 @@
 from operator import length_hint
 import pytest
-from draw.drawing_program import DrawingProgram
+from draw.drawing_program import DrawingProgram, DrawingProgramIterator
 from draw import ShapeFactory
 from draw.shapes import Circle, Square, Triangle
 
@@ -162,6 +162,18 @@ def test_set_shape():
     d.set_shape(index=1, shape=ShapeFactory.create_shape("Circle", radius=1))
 
     assert print(d) == "Circle, area: 314.16, perimeter: 62.83\nCircle, area: 3.14, perimeter: 6.28\nRectangle, area: 205.00, perimeter: 61.00\nTriangle, area: 36.00, perimeter: 32.00\nCircle, area: 3.14, perimeter: 6.28"
+
+
+def test_DrawingProgramIterator(capsys):
+    drawing_program = DrawingProgram()
+
+    for shape in drawing_program:
+        print(shape)
+
+    captured = capsys.readouterr()
+
+    assert (captured.out == """Square, area: 16.00, perimeter: 16.00\nCircle, area: 12.57, perimeter: 12.57\n""")
+
 
 
 
