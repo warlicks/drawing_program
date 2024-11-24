@@ -165,6 +165,7 @@ def test_set_shape():
 
 
 def test_DrawingProgramIterator(capsys):
+    """Test DrawingProgramIterator outputs expected shapes"""
     drawing_program = DrawingProgram()
 
     for shape in drawing_program:
@@ -175,9 +176,8 @@ def test_DrawingProgramIterator(capsys):
     assert (captured.out == """Square, area: 16.00, perimeter: 16.00\nCircle, area: 12.57, perimeter: 12.57\n""")
 
 
-
-
 def test_empty_print():
+    """Test empty DrawingProgram raises a value error when trying to print"""
     d2 = DrawingProgram()
 
     with pytest.raises(ValueError):

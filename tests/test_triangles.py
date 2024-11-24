@@ -22,6 +22,7 @@ def test_triangle_property(triangle):
 
 
 def test_draw_triangle(triangle):
+    """Test that .draw method outputs as expected"""
     assert triangle.draw() == "Triangle, area: 36.00, perimeter: 32.00"
 
 
@@ -33,9 +34,9 @@ def test_print_triangle(triangle):
 
 def test_triangle_area(triangle):
     """Test that we get the correct area calculation"""
-
     assert triangle.area() == 36
 
 
-def test_triangle_perimiter(triangle):
+def test_triangle_perimeter(triangle):
+    """Test that we get correct perimeter calculation"""
     assert triangle.perimeter() == 32
