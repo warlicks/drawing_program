@@ -2,7 +2,7 @@ Team member names: Sean Warlick and Gabby Lemire
 
 Time it took each person to work on assignment:
 Gabby (about 3 mornings and 1 evening).
-Sean ().
+Sean (About 3 evenings).
 
 What each person worked on:
 Gabby - drawingprogram methods. tests for drawing_iteration, drawingprogram. readme, docstrings, github, output screencaptures
