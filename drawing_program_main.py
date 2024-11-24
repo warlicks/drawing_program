@@ -1,5 +1,5 @@
-from .drawing_program import DrawingProgram
-from shape_factory import ShapeFactory
+from draw.drawing_program import DrawingProgram
+from draw import ShapeFactory
 
 
 class DrawingProgramMain(DrawingProgram, ShapeFactory):
