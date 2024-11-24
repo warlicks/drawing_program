@@ -1,14 +1,11 @@
-# Your team will create a program that has a class that holds a list/collection of shapes. This class will
-# be named DrawingProgram. Here are the attributes (data) and behaviors (methods) of this class:
 from draw.shapes import Shape
+from draw.shape_factory import ShapeFactory
+
 
 
 class DrawingProgram:
-    # For the intents and purposes of this assignment, all shapes should be created via ShapeFactory.
-    #     Thus any adding of shapes to your DrawingProgram class object must be done through ShapeFactory.
-    #     This may seem cumbersome, but the point is to leave object creation to a single class.
-    #         It encapsulates how to create the objects you need.
-    #  ^^^ I think this means we pass in ShapeFactory into DrawingProgram instead of the shapes themselves?
+    """Drawing program contains a list of shapes and methods to apply to the shapes such as:
+    printing the shapes it contains, adding, removing, sorting, setting, and getting shapes in specific indices."""
 
     def __init__(self, shapes: list = []):
         """Creates a DrawingProgram Instance
@@ -197,9 +194,28 @@ class DrawingProgramIterator:
             raise StopIteration
 
 
-class DrawingProgramMain(DrawingProgram):
-    #     Create a class called DrawingProgramMain that creates a DrawingProgram,
-    #     adds shapes to it. Sorts the shapes, adds some more shapes, replaces some shapes,
-    #     sorts again. With each thing done be sure and include print statements to show what was done.
+class DrawingProgramMain(DrawingProgram, ShapeFactory):
+    """Create a class called DrawingProgramMain that creates a DrawingProgram,
+    adds shapes to it. Sorts the shapes, adds some more shapes, replaces some shapes,
+    sorts again. Each step is printed. """
+    # create instance of DrawingProgram()
+    draw_prog = DrawingProgram()
 
-    pass
+    # print empty list (nothing to return)
+    print(draw_prog)
+
+    draw_prog.add_shape(ShapeFactory.create_shape("square", length=4))
+    # print only square
+    print(draw_prog)
+
+    draw_prog.add_shape(ShapeFactory.create_shape("circle", radius=2))
+    # print square and circle
+    print(draw_prog)
+
+    draw_prog.sort_shapes()
+    # print reordered shapes: circle then square
+    print(draw_prog)
+
+    draw_prog.set_shape(index=0, shape=ShapeFactory.create_shape("triangle", side1=10, side2=10, base=12, height=6))
+    # print shapes after replacement: triangle then square
+    print(draw_prog)
