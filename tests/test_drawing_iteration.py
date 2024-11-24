@@ -2,7 +2,7 @@ from operator import length_hint
 import pytest
 from draw.drawing_program import DrawingProgram
 from draw import ShapeFactory
-from draw.shapes import Circle, Square
+from draw.shapes import Circle, Square, Triangle
 
 
 @pytest.fixture(scope="module")
@@ -110,6 +110,26 @@ def test_remove_with_single_shape(drawing_program):
 
     with pytest.raises(Exception):
         drawing_program.remove_shape(Square)
+
+
+def test_sort_shapes(capsys):
+    """Creates a drawing instances with four shapes for tests"""
+    shape_list = [
+        ShapeFactory.create_shape("circle", radius=10),
+        ShapeFactory.create_shape("square", length=10),
+        ShapeFactory.create_shape("rectangle", length=10, width=20.5),
+        ShapeFactory.create_shape("triangle", side1=10, side2=10, base=12, height=6),
+        ShapeFactory.create_shape("Circle", radius=1),
+    ]
+
+    d = DrawingProgram(shape_list)
+    d.sort_shapes()
+    print(d)
+    captured = capsys.readouterr()
+
+    assert (
+            captured.out
+            == """Circle, area: 3.14, perimeter: 6.28\nCircle, area: 314.16, perimeter: 62.83\nRectangle, area: 205.00, perimeter: 61.00\nSquare, area: 100.00, perimeter: 40.00\nTriangle, area: 36.00, perimeter: 32.00\n""")
 
 
 def test_empty_print():
