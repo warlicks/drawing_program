@@ -2,7 +2,7 @@ from operator import length_hint
 import pytest
 from draw.drawing_program import DrawingProgram
 from draw import ShapeFactory
-from draw.shapes import Circle
+from draw.shapes import Circle, Square
 
 
 @pytest.fixture(scope="module")
@@ -89,8 +89,27 @@ def test_print_shapes(capsys):
 
     assert (
         captured.out
-        == """Circle, area: 314.16, perimeter: 62.83\nCircle, area: 3.14, perimeter: 6.28"""
+        == """Circle, area: 314.16, perimeter: 62.83\nCircle, area: 3.14, perimeter: 6.28\n"""
     )
+
+
+def test_remove_with_single_shape(drawing_program):
+    """Test remove_shape returns parameter with the number of that shape that was removed"""
+    drawing_program.add_shape(ShapeFactory.create_shape("circle", radius=10))
+    drawing_program.add_shape(ShapeFactory.create_shape("circle", radius=10))
+
+    how_many_rm = drawing_program.remove_shape(Circle)
+
+    assert how_many_rm == 2
+
+
+def test_remove_with_single_shape(drawing_program):
+    """Test remove_shape return when shape to remove isn't in drawing_program"""
+    drawing_program.add_shape(ShapeFactory.create_shape("circle", radius=10))
+    drawing_program.add_shape(ShapeFactory.create_shape("circle", radius=10))
+
+    with pytest.raises(Exception):
+        drawing_program.remove_shape(Square)
 
 
 def test_empty_print():
@@ -98,3 +117,4 @@ def test_empty_print():
 
     with pytest.raises(ValueError):
         d2.print_shapes(Circle)
+

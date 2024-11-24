@@ -43,14 +43,21 @@ class DrawingProgram:
             int: The number of items removed from the collection of shapes.
         """
         start_length = len(self.shapes)
-        self.shapes = [x for x in self.shapes if not isinstance(x, shape)]
+
+        i = 0
+        while i < len(self.shapes):
+            if isinstance(self.shapes[i], shape):
+                del self.shapes[i]
+            else:
+                i += 1
+
         end_length = len(self.shapes)
         shape_rm_count = start_length - end_length
 
         if shape_rm_count == 0:
             raise Exception(f"{shape} not present")
 
-        print(f"{shape_rm_count} number of {shape} removed from shape list.")
+        print(f"{shape_rm_count} number of {print(shape)} removed from shape list.")
         return shape_rm_count
 
     def print_shapes(self, shape: Shape):
