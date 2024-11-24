@@ -48,33 +48,6 @@ class Shape(abc.ABC):
         return f"{self.shape_name}, area: {self.area():.2f}, perimeter: {self.perimeter():.2f}"
         # return f"{self.shape_name}, area: {self.area()}, perimeter: {self.perimeter()}"
 
-    def __eq__(self, other):
-        if isinstance(other, self.__class__):
-            if self.area() == other.area():
-                return True
-            else:
-                return False
-        else:
-            raise TypeError(f"{other} is not {self.__class__}")
-
-    def __le__(self, other):
-        if isinstance(other, self.__class__):
-            if self.area() < other.area():
-                return True
-            else:
-                return False
-        else:
-            raise TypeError(f"{other} is not {self.__class__}")
-
-    def __gt__(self, other):
-        if isinstance(other, self.__class__):
-            if self.area() > other.area():
-                return True
-            else:
-                return False
-        else:
-            raise TypeError(f"{other} is not {self.__class__}")
-
 
 class Circle(Shape):
     def __init__(self, radius: Union[int, float]) -> None:
